@@ -86,26 +86,26 @@
   <div class="rect4"></div>
   <div class="rect5"></div>
 </div>
-<!-- 动态加载 -->
+<!-- 动态加载页面的区域 -->
 <div id="part1"></div>
 </div>
 
 </body>
 <script type="text/javascript">
-	var flagPos = $("#waterfallflag").offset().top;
-	$(window).scroll(function() {
-		if ((getScrollTop() + getClientHeight()) > flagPos) {
-			$(".spinner").show();
-			$.post("waterfall/waterfall", function(data) {
-				if (data != null) {
+	var flagPos = $("#waterfallflag").offset().top;//动态触发加载的标记的位置
+	$(window).scroll(function() {//当窗口发生滚动的时候去监测是否到达标记的位置
+		if ((getScrollTop() + getClientHeight()) > flagPos) {//一旦滚动到了标记的位置
+			$(".spinner").show();//首先会是css实现的一个loading的的效果
+			$.post("waterfall/waterfall", function(data) {//与此同时，通过Ajax去异步的获取part2的内容
+				if (data != null) {//当返回成功的时候
 					setTimeout(function() {
-						$(".spinner").hide("normal");
-						$("#part1").append(data);
+						$(".spinner").hide("normal");//先使loading的效果隐藏
+						$("#part1").append(data);//然后将返回的数据加载到part1的区域里去
 						$("#part1").removeAttr("id");
 					}, 800);
 				}
 			}, "html");
-			flagPos = getScrollHeight();
+			flagPos = getScrollHeight();//最后将标记的位置设为当前文档的高度
 		}
 	});
 </script>
