@@ -8,6 +8,10 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * @author Earl    
+ *
+ */
 public class WaterfallFlow extends ActionSupport {
 
 	/**
@@ -15,6 +19,10 @@ public class WaterfallFlow extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 跳转到part1的页面，并模拟了一组数据用于填充到jsp页面中
+	 * @return
+	 */
 	public String toPage(){
 		ArrayList<Map<String, Object>> studentList=new ArrayList<Map<String, Object>>();
 		for(int i=0;i<4;i++){
@@ -30,6 +38,10 @@ public class WaterfallFlow extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	/**
+	 * 通过Ajax动态的访问这个加载后的方法，模拟一组数据用于填充到part2的页面中
+	 * @return
+	 */
 	public String  waterfall() {
 		ArrayList<Map<String, Object>> teacherList=new ArrayList<Map<String, Object>>();
 		for(int i=0;i<4;i++){
